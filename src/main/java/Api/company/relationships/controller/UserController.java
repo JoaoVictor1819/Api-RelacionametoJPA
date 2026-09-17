@@ -4,6 +4,7 @@ package Api.company.relationships.controller;
 import Api.company.relationships.database.entity.User;
 import Api.company.relationships.dto.UserDto;
 import Api.company.relationships.servise.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("api/user")
+@RestController
+@RequestMapping("/apiv2/user")
+@Tag(name = "User", description = "Crud para cadastro de usuarios")
 public class UserController {
 
     private UserService userService;
