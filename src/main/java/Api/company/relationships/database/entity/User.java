@@ -26,10 +26,13 @@ public class User {
 
     private String lastname;
 
+    @Column(unique = true)
     private String email;
 
+    @Column(unique = true)
     private String documento;
 
+    @Column(unique = true)
     private String password;
 
 

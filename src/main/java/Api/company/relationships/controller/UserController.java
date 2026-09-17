@@ -4,6 +4,7 @@ package Api.company.relationships.controller;
 import Api.company.relationships.database.entity.User;
 import Api.company.relationships.dto.UserDto;
 import Api.company.relationships.servise.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserDto dto){
+    public ResponseEntity<User> createUser(@RequestBody @Valid UserDto dto){
         var user = userService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
@@ -46,7 +47,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserDto dto){
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody @Valid UserDto dto){
         var userUpdate = userService.update(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(userUpdate);
     }

@@ -1,17 +1,26 @@
 package Api.company.relationships.dto;
 
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public record UserDto(
 
-
+        @NotBlank(message = "First name is mandatory")
         String firstname,
 
-         String lastname,
+        @NotBlank(message = "Last name is mandatory")
+        String lastname,
 
-         String email,
+        @NotBlank(message = "Email is mandatory")
+        @Email(message = "Use a valid email format.")
+        String email,
 
-         String documento,
+        @NotBlank(message = "Document is mandatory")
+        String documento,
 
+        @NotBlank(message = "Password is mandatory")
+        @Size(min = 4, max = 10)
         String password) {
 }
