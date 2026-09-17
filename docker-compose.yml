@@ -1,0 +1,11 @@
+services:
+  mysql:
+    image: 'mysql'
+    environment:
+      - 'MYSQL_DATABASE=companystructure'
+      - 'MYSQL_PASSWORD=user1234'
+      - 'MYSQL_ROOT_PASSWORD=user1234'
+      - 'MYSQL_USER=myapi'
+    ports:
+      - '3400:3306'
+  
