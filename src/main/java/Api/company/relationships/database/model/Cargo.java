@@ -1,6 +1,6 @@
 package Api.company.relationships.database.model;
 
-import Api.company.relationships.dto.cargo.CargoDto;
+import Api.company.relationships.dto.cargo.CargoRequestDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,7 +45,7 @@ public class Cargo {
             inverseJoinColumns = @JoinColumn(name = "permissao_id"))
     private Set<Permissao> permissao = new HashSet<>();
 
-    public Cargo(CargoDto dto) {
+    public Cargo(CargoRequestDto dto) {
         this.nomeCargo = dto.nomeCargo();
         this.descricaoCargo = dto.descricaoCargo();
         this.salarioCargo = dto.salarioCargo();

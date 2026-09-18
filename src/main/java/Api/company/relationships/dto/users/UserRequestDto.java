@@ -24,7 +24,5 @@ public record UserRequestDto(
         @Size(min = 4, max = 10)
         String password,
 
-        Long cargoId,
-
-        EnderecoUserDto endereco) {
+        Long cargoId) {
 }

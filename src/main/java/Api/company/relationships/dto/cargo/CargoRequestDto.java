@@ -1,10 +1,8 @@
 package Api.company.relationships.dto.cargo;
 
-import jakarta.persistence.Column;
-
 import java.math.BigDecimal;
 
-public record CargoDto(
+public record CargoRequestDto(
 
         String nomeCargo,
 

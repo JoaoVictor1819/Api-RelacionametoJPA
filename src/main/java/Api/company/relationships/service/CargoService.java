@@ -2,7 +2,7 @@ package Api.company.relationships.service;
 
 import Api.company.relationships.database.model.Cargo;
 import Api.company.relationships.database.repository.CargoRespository;
-import Api.company.relationships.dto.cargo.CargoDto;
+import Api.company.relationships.dto.cargo.CargoRequestDto;
 import Api.company.relationships.exception.ResourceExceptonHandler;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class CargoService {
         this.cargoRespository = cargoRespository;
     }
 
-    public Cargo saveCargo(CargoDto dto){
+    public Cargo saveCargo(CargoRequestDto dto){
         Cargo cargo = new Cargo(dto);
         return cargoRespository.save(cargo);
     }
@@ -39,7 +39,7 @@ public class CargoService {
         cargoRespository.deleteById(id);
     }
 
-    public Cargo updateCargo(Long id, CargoDto dto){
+    public Cargo updateCargo(Long id, CargoRequestDto dto){
         var cargo = cargoRespository.findById(id)
                 .orElseThrow(() -> new ResourceExceptonHandler("with id"  + id + " not found"));
 

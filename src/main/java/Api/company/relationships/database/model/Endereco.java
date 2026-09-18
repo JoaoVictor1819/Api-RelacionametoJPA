@@ -23,8 +23,12 @@ public class Endereco {
     @Column(nullable = false)
     private String cep;
 
+    private String cidade;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String rua;
+
+
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;

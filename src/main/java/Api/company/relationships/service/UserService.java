@@ -2,6 +2,7 @@ package Api.company.relationships.service;
 
 
 import Api.company.relationships.database.model.User;
+import Api.company.relationships.database.repository.CargoRespository;
 import Api.company.relationships.database.repository.UserRepository;
 import Api.company.relationships.dto.users.UserRequestDto;
 import Api.company.relationships.exception.ResourceExceptonHandler;
@@ -15,14 +16,23 @@ public class UserService {
 
 
     private UserRepository userRepository;
+    private CargoRespository cargoRespository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, CargoRespository cargoRespository) {
         this.userRepository = userRepository;
+        this.cargoRespository = cargoRespository;
     }
 
+
     public User save(UserRequestDto dto){
+        var cargo = cargoRespository.findById(dto.cargoId())
+            .orElseThrow(() -> new ResourceExceptonHandler("Cargo not found"));
+
         var user = new User(dto);
+        user.setCargo(cargo);
+
         return userRepository.save(user);
+
     }
 
     public List<User> findAll(){

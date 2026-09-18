@@ -2,7 +2,7 @@ package Api.company.relationships.controller;
 
 
 import Api.company.relationships.database.model.Cargo;
-import Api.company.relationships.dto.cargo.CargoDto;
+import Api.company.relationships.dto.cargo.CargoRequestDto;
 import Api.company.relationships.service.CargoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class CargoController {
     }
 
     @PostMapping
-    public ResponseEntity<Cargo> saveCargo(CargoDto dto){
+    public ResponseEntity<Cargo> saveCargo(CargoRequestDto dto){
         var cargo = cargoService.saveCargo(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(cargo);
     }
@@ -39,7 +39,7 @@ public class CargoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cargo> UpdateCargo(@PathVariable Long id, @RequestBody CargoDto dto){
+    public ResponseEntity<Cargo> UpdateCargo(@PathVariable Long id, @RequestBody CargoRequestDto dto){
         var cargo = cargoService.updateCargo(id, dto);
         return  ResponseEntity.status(HttpStatus.OK).body(cargo);
     }
