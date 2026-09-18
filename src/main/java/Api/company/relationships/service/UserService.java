@@ -1,10 +1,10 @@
-package Api.company.relationships.servise;
+package Api.company.relationships.service;
 
 
-import Api.company.relationships.database.entity.User;
+import Api.company.relationships.database.model.User;
 import Api.company.relationships.database.repository.UserRepository;
 import Api.company.relationships.dto.UserDto;
-import Api.company.relationships.exception.ResourceExcepitonHandler;
+import Api.company.relationships.exception.ResourceExceptonHandler;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -31,12 +31,12 @@ public class UserService {
 
     public User findById(Long id){
         return userRepository.findById(id)
-                .orElseThrow(() -> new ResourceExcepitonHandler("User with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceExceptonHandler("User with id " + id + " not found"));
     }
 
     public void delete(Long id){
         if (!userRepository.existsById(id) || userRepository.findById(id).isEmpty()){
-            throw new ResourceExcepitonHandler("Cadastro with id"  + id + " not found");
+            throw new ResourceExceptonHandler("Cadastro with id"  + id + " not found");
         }
         userRepository.deleteById(id);
     }
@@ -45,7 +45,7 @@ public class UserService {
     @Transactional
     public User update(Long id, UserDto dto){
         var user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceExcepitonHandler("User with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceExceptonHandler("User with id " + id + " not found"));
 
         user.setFirstname(dto.firstname());
         user.setLastname(dto.lastname());

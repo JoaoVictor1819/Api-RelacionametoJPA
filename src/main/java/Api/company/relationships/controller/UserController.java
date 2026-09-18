@@ -1,16 +1,14 @@
 package Api.company.relationships.controller;
 
 
-import Api.company.relationships.database.entity.User;
+import Api.company.relationships.database.model.User;
 import Api.company.relationships.dto.UserDto;
-import Api.company.relationships.servise.UserService;
+import Api.company.relationships.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

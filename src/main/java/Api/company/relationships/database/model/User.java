@@ -1,4 +1,4 @@
-package Api.company.relationships.database.entity;
+package Api.company.relationships.database.model;
 
 
 import Api.company.relationships.dto.UserDto;
