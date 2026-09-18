@@ -40,8 +40,6 @@ public class User {
     private Cargo cargo;
 
 
-
-
     public User(UserDto dto) {
 
         this.firstname = dto.firstname();

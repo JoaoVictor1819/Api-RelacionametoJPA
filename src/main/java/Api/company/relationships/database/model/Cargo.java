@@ -32,7 +32,13 @@ public class Cargo {
     private BigDecimal salarioCargo;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "cargo",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cargo",fetch =  FetchType.LAZY)
     private Set<User> users = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "Permissoes_Cargos",
+            joinColumns = @JoinColumn(name = "cargo_id"),
+            inverseJoinColumns = @JoinColumn(name = "permissao_id"))
+    private Set<Permissao> permissao = new HashSet<>();
 }
