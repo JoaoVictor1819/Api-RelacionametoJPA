@@ -35,6 +35,12 @@ public class User {
     @Column(unique = true)
     private String password;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cargo_id")
+    private Cargo cargo;
+
+
+
 
     public User(UserDto dto) {
 
