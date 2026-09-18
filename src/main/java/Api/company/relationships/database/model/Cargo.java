@@ -1,5 +1,6 @@
 package Api.company.relationships.database.model;
 
+import Api.company.relationships.dto.cargo.CargoDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,9 @@ public class Cargo {
     @Column(nullable = false)
     private BigDecimal salarioCargo;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Empresa empresa;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "cargo",fetch =  FetchType.LAZY)
     private Set<User> users = new HashSet<>();
@@ -41,4 +45,10 @@ public class Cargo {
             joinColumns = @JoinColumn(name = "cargo_id"),
             inverseJoinColumns = @JoinColumn(name = "permissao_id"))
     private Set<Permissao> permissao = new HashSet<>();
+
+    public Cargo(CargoDto dto) {
+        this.nomeCargo = dto.nomeCargo();
+        this.descricaoCargo = dto.descricaoCargo();
+        this.salarioCargo = dto.salarioCargo();
+    }
 }

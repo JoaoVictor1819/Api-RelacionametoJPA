@@ -3,7 +3,7 @@ package Api.company.relationships.service;
 
 import Api.company.relationships.database.model.User;
 import Api.company.relationships.database.repository.UserRepository;
-import Api.company.relationships.dto.UserDto;
+import Api.company.relationships.dto.users.UserRequestDto;
 import Api.company.relationships.exception.ResourceExceptonHandler;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User save(UserDto dto){
+    public User save(UserRequestDto dto){
         var user = new User(dto);
         return userRepository.save(user);
     }
@@ -36,14 +36,14 @@ public class UserService {
 
     public void delete(Long id){
         if (!userRepository.existsById(id) || userRepository.findById(id).isEmpty()){
-            throw new ResourceExceptonHandler("Cadastro with id"  + id + " not found");
+            throw new ResourceExceptonHandler("User with id"  + id + " not found");
         }
         userRepository.deleteById(id);
     }
 
 
     @Transactional
-    public User update(Long id, UserDto dto){
+    public User update(Long id, UserRequestDto dto){
         var user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceExceptonHandler("User with id " + id + " not found"));
 

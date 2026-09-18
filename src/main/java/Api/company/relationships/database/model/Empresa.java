@@ -7,25 +7,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name = "Endereco_usuario")
+@Table(name = "Empresa")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Endereco {
+public class Empresa {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
+    private String nome;
 
-    @Column(nullable = false)
-    private String cep;
+    @JsonProperty(access =  JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "empresa",fetch =  FetchType.LAZY)
+    private Set<Cargo> cargos = new HashSet<>();
 
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 }

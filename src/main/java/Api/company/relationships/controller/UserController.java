@@ -2,7 +2,7 @@ package Api.company.relationships.controller;
 
 
 import Api.company.relationships.database.model.User;
-import Api.company.relationships.dto.UserDto;
+import Api.company.relationships.dto.users.UserRequestDto;
 import Api.company.relationships.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping
     @Operation(summary = "Cadastro de Usuarios", description = "EndPoint feito para Cadastrar Usuario e Salvar")
-    public ResponseEntity<User> createUser(@RequestBody @Valid UserDto dto){
+    public ResponseEntity<User> createUser(@RequestBody @Valid UserRequestDto dto){
         var user = userService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
@@ -54,7 +54,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Atualizar Usuario", description = "EndPoint que atualizar o usuario com o id especifico")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody @Valid UserDto dto){
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody @Valid UserRequestDto dto){
         var userUpdate = userService.update(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(userUpdate);
     }

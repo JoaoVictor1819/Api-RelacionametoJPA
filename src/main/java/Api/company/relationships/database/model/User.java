@@ -1,7 +1,7 @@
 package Api.company.relationships.database.model;
 
 
-import Api.company.relationships.dto.UserDto;
+import Api.company.relationships.dto.users.UserRequestDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,8 +39,10 @@ public class User {
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Endereco endereco;
 
-    public User(UserDto dto) {
+    public User(UserRequestDto dto) {
 
         this.firstname = dto.firstname();
         this.lastname = dto.lastname();

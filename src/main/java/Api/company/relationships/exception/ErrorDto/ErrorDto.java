@@ -1,4 +1,4 @@
-package Api.company.relationships.dto.ErrorDto;
+package Api.company.relationships.exception.ErrorDto;
 
 import java.util.Map;
 

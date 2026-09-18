@@ -1,11 +1,11 @@
-package Api.company.relationships.dto;
+package Api.company.relationships.dto.users;
 
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record UserDto(
+public record UserRequestDto(
 
         @NotBlank(message = "First name is mandatory")
         String firstname,
@@ -22,5 +22,9 @@ public record UserDto(
 
         @NotBlank(message = "Password is mandatory")
         @Size(min = 4, max = 10)
-        String password) {
+        String password,
+
+        Long cargoId,
+
+        EnderecoUserDto endereco) {
 }
